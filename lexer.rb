@@ -29,8 +29,8 @@ class Lexer
         tokens << [:STRING, string]
         i += string.size + 2
 
-      elsif chunk.match(/\A\n+/)
-        tokens << [:NEWLINE, "\n"]
+      elsif chunk.match(/\A([\r\n]+)/)
+        #tokens << [:NEWLINE, "\n"]
         i += 1
 
       elsif chunk.match(/\A /)
@@ -48,5 +48,3 @@ class Lexer
     tokens
   end
 end
-
-p Lexer.new.tokenize("")

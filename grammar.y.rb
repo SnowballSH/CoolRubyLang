@@ -35,7 +35,7 @@ Expressions:
   | Expressions Terminator Expression  { result = val[0] << val[2] }
   | Expressions Terminator             { result = val[0] }
   | Terminator                         { result = Nodes.new([]) }
-  ;
+;
 
 Expression:
     Literal
@@ -101,7 +101,7 @@ Operator:
 ;
 
 GetConstant:
-    CONSTANT                      { result = GetConstantNode.new(val[0]) }
+  CONSTANT                      { result = GetConstantNode.new(val[0]) }
 ;
   
 SetConstant:
