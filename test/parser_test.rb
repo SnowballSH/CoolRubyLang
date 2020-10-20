@@ -1,4 +1,4 @@
-require './parser.rb'
+require "#{File.dirname(__FILE__)}/../src/parser.rb"
 
 code = <<-CODE
 def a():

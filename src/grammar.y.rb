@@ -1,6 +1,6 @@
 class Parser
 
-token DEF
+token DEF CLASS
 
 token NEWLINE
 token NUMBER
@@ -47,6 +47,7 @@ Expression:
   | GetLocal
   | SetLocal
   | Def
+  | Class
   | '(' Expression ')'    { result = val[1] }
 ;
 
@@ -127,9 +128,13 @@ Def:
       "(" ParamList ")" Block     { result = DefNode.new(val[1], val[3], val[5]) }
 ;
 
+Class:
+    CLASS CONSTANT Block          { result = ClassNode.new(val[1], val[2]) }
+;
+
 ---- header
-  require "./lexer.rb"
-  require "./nodes.rb"
+  require "#{File.dirname(__FILE__)}/lexer.rb"
+  require "#{File.dirname(__FILE__)}/nodes.rb"
 
 ---- inner
   def parse(code, show_tokens=false)
