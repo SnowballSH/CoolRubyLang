@@ -30,7 +30,7 @@ class Lexer
         i += string.size + 2
 
       elsif chunk.match(/\A([\r\n]+)/)
-        #tokens << [:NEWLINE, "\n"]
+        tokens << [:NEWLINE, "\n"]
         i += 1
 
       elsif chunk.match(/\A /)

@@ -35,6 +35,7 @@ Expressions:
   | Expressions Terminator Expression  { result = val[0] << val[2] }
   | Expressions Terminator             { result = val[0] }
   | Terminator                         { result = Nodes.new([]) }
+  | NEWLINE Expression                 { result = val[1] }
 ;
 
 Expression:

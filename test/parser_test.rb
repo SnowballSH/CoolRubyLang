@@ -1,8 +1,8 @@
 require './parser.rb'
 
 code = <<-CODE
-def method(a, b):
-  puts (a + b)
+def a():
+  print("hmm")
 end
 CODE
 
