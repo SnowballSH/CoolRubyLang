@@ -3,11 +3,11 @@ Constants = {}
 Constants["Class"] = BaseClass.new                 # Defining the `Class` class.
 Constants["Class"].runtime_class = Constants["Class"] # Setting `Class.class = Class`.
 Constants["Object"] = BaseClass.new                # Defining the `Object` class
-Constants["Number"] = BaseClass.new                # Defining the `Number` class
-Constants["String"] = BaseClass.new
+Constants["Number"] = BaseClass.new(Constants["Object"])  # Defining the `Number` class
+Constants["String"] = BaseClass.new(Constants["Object"])
 
-Constants["BoolClass"] = BaseClass.new
-Constants["NilClass"] = BaseClass.new
+Constants["BoolClass"] = BaseClass.new(Constants["Object"])
+Constants["NilClass"] = BaseClass.new(Constants["Object"])
 
 Constants["true"] = Constants["BoolClass"].new_with_value(true)
 Constants["false"] = Constants["BoolClass"].new_with_value(false)
