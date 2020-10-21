@@ -1,8 +1,8 @@
 require "#{File.dirname(__FILE__)}/../src/parser.rb"
 
 code = <<-CODE
-def a():
-  print("hmm")
+def a:
+  "hmm"
 end
 CODE
 

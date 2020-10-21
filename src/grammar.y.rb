@@ -35,7 +35,7 @@ Expressions:
   | Expressions Terminator Expression  { result = val[0] << val[2] }
   | Expressions Terminator             { result = val[0] }
   | Terminator                         { result = Nodes.new([]) }
-  | NEWLINE Expression                 { result = val[1] }
+  | NEWLINE Expression                 { result = Nodes.new([val[1]]) }
 ;
 
 Expression:
@@ -74,6 +74,7 @@ Call:
 Arguments:
     "(" ")"                       { result = [] }
   | "(" ArgList ")"               { result = val[1] }
+  | "!"                           { result = [] }
 ;
 
 ArgList:
@@ -119,7 +120,8 @@ SetLocal:
 ;
 
 Block:
-  ":" Expressions END     { result = val[1] }
+    ":" Expressions END     { result = val[1] }
+  | "{" Expressions "}"     { result = val[1] }
 ;
 
 Def:
