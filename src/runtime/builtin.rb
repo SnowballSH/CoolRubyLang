@@ -26,21 +26,21 @@ Constants["Object"].def :puts do |receiver, arguments|
 end
 
 Constants["Number"].def :+ do |receiver, arguments|
-  result = receiver.ruby_value + arguments.first.ruby_value
+  result = receiver.value + arguments.first.value
   Constants["Number"].new_with_value(result)
 end
 
 Constants["Number"].def :- do |receiver, arguments|
-  result = receiver.ruby_value - arguments.first.ruby_value
+  result = receiver.value - arguments.first.value
   Constants["Number"].new_with_value(result)
 end
 
 Constants["Number"].def :* do |receiver, arguments|
-  result = receiver.ruby_value * arguments.first.ruby_value
+  result = receiver.value * arguments.first.value
   Constants["Number"].new_with_value(result)
 end
 
 Constants["Number"].def :/ do |receiver, arguments|
-  result = receiver.ruby_value / arguments.first.ruby_value
+  result = receiver.value / arguments.first.value
   Constants["Number"].new_with_value(result)
 end

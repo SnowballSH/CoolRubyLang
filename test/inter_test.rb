@@ -1,10 +1,7 @@
 require "#{File.dirname(__FILE__)}/../src/interpreter.rb"
 
 code = <<CODE
-def a{
-  puts("mhm")
-}
-puts(a!)
+puts((3+4)*5)
 CODE
 
 Interpreter.new.eval(code)
