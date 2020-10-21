@@ -1,5 +1,5 @@
 require_relative "bytecode.fmt.rb"
-require_relative "runtime.rb"
+require_relative "../runtime.rb"
 
 class VM
   def run(bytecode)

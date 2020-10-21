@@ -1,4 +1,4 @@
-require "#{File.dirname(__FILE__)}/../src/vm"
+require "#{File.dirname(__FILE__)}/../src/compile.rb"
 
 # 1 + 3
 
