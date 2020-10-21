@@ -6,6 +6,9 @@ Constants["Object"] = BaseClass.new                # Defining the `Object` class
 Constants["Number"] = BaseClass.new(Constants["Object"])  # Defining the `Number` class
 Constants["String"] = BaseClass.new(Constants["Object"])
 
+root_self = Constants["Object"].new
+RootContext = Context.new(root_self)
+
 Constants["BoolClass"] = BaseClass.new(Constants["Object"])
 Constants["NilClass"] = BaseClass.new(Constants["Object"])
 
@@ -19,5 +22,25 @@ end
 
 Constants["Object"].def :puts do |receiver, arguments|
   puts arguments.first.value
-  Constants["nil"] # We always want to return objects from our runtime
+  Constants["nil"]
+end
+
+Constants["Number"].def :+ do |receiver, arguments|
+  result = receiver.ruby_value + arguments.first.ruby_value
+  Constants["Number"].new_with_value(result)
+end
+
+Constants["Number"].def :- do |receiver, arguments|
+  result = receiver.ruby_value - arguments.first.ruby_value
+  Constants["Number"].new_with_value(result)
+end
+
+Constants["Number"].def :* do |receiver, arguments|
+  result = receiver.ruby_value * arguments.first.ruby_value
+  Constants["Number"].new_with_value(result)
+end
+
+Constants["Number"].def :/ do |receiver, arguments|
+  result = receiver.ruby_value / arguments.first.ruby_value
+  Constants["Number"].new_with_value(result)
 end
