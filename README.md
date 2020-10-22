@@ -7,11 +7,11 @@ It is built in ruby.
 Speed comparison for assigning 3 strings to variables(relative):
 
 ```
-C:                          1ms
-Ruby:                       8ms
-Scarlet (this):             29ms    (including the code for ruby to execute the interpreter)
-Python:                     126ms
-Snow (My other language):   1508ms
+C:                         <0.5  ms
+Ruby:                       8.5  ms
+Scarlet (this):             29   ms    (including the code for ruby to execute the interpreter)
+Python:                     126  ms
+Snow (My other language):  >1508 ms
 ```
 
 To use the language:
