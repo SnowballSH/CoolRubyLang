@@ -9,7 +9,10 @@ class Lexer
     while i < code.size
       chunk = code[i..-1]
 
-      if identifier = chunk[/\A([a-z]\w*)/, 1]
+      if comment = chunk[/\A#(.*?)#/, 1]
+        i += comment.size + 2
+
+      elsif identifier = chunk[/\A([a-z]\w*)/, 1]
         tokens << if KEYWORDS.include?(identifier)
                     [identifier.upcase.to_sym, identifier]
                   else
