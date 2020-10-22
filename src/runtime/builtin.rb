@@ -20,10 +20,36 @@ Constants["Class"].def :new do |receiver, arguments|
   receiver.new
 end
 
+#####################################
+# Builtin functions for Main/Object #
+#####################################
+
 Constants["Object"].def :puts do |receiver, arguments|
   puts arguments.first.value
   Constants["nil"]
 end
+
+Constants["Object"].def :print do |receiver, arguments|
+  print arguments.first.value
+  arguments.first.value
+end
+
+#####################################
+
+#####################################
+# Builtin functions for Main/String #
+#####################################
+
+Constants["String"].def :int do |receiver, arguments|
+  result = receiver.value.to_i
+  Constants["Number"].new_with_value(result)
+end
+
+#####################################
+
+#####################################
+# Builtin functions for Main/Number #
+#####################################
 
 Constants["Number"].def :+ do |receiver, arguments|
   result = receiver.value + arguments.first.value
@@ -44,3 +70,5 @@ Constants["Number"].def :/ do |receiver, arguments|
   result = receiver.value / arguments.first.value
   Constants["Number"].new_with_value(result)
 end
+
+#####################################

@@ -1,4 +1,7 @@
 # Scarlet example #
-
-puts(2 + 6 * 8)
-puts((2 + 6) * 8)
+a = "0299298"
+b = "9370000"
+c = "ASIOH"
+puts(a.int + 99)
+puts(b.int * 7)
+puts(c.int - 999)
