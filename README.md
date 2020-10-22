@@ -4,9 +4,10 @@ A **dynamic, object and function oriented, general-purpose** programming languag
 
 It is built in ruby.
 
-Speed comparison (relative):
+Speed comparison for assigning 3 strings to variables(relative):
 
 ```
+C:                          1ms
 Ruby:                       8ms
 Scarlet (this):             29ms    (including the code for ruby to execute the interpreter)
 Python:                     126ms
