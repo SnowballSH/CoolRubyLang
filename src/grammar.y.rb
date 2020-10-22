@@ -122,6 +122,7 @@ SetLocal:
 Block:
     ":" Expressions END     { result = val[1] }
   | "{" Expressions "}"     { result = val[1] }
+  | "{" "}"                 { result = [] }
 ;
 
 Def:
