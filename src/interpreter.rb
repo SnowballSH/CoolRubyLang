@@ -82,8 +82,7 @@ end
 
 class SetGlobalNode
   def eval(context)
-    context.globals[name] = value.eval(context)
-    context.current_class.set_global(name, value)
+    context.current_class.set_global(name, value.eval(context))
   end
 end
 

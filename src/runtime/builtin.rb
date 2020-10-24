@@ -62,6 +62,11 @@ Constants["String"].def :int do |receiver, arguments|
   Constants["Number"].new_with_value(result)
 end
 
+Constants["String"].def :+ do |receiver, arguments|
+  result = receiver.value + arguments.first.value
+  Constants["String"].new_with_value(result)
+end
+
 #####################################
 
 #####################################
@@ -86,6 +91,11 @@ end
 Constants["Number"].def :/ do |receiver, arguments|
   result = receiver.value / arguments.first.value
   Constants["Number"].new_with_value(result)
+end
+
+Constants["Number"].def :str do |receiver, arguments|
+  result = receiver.value.to_s
+  Constants["String"].new_with_value(result)
 end
 
 #####################################
