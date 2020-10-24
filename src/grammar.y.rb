@@ -46,6 +46,7 @@ Expression:
   | SetConstant
   | GetLocal
   | SetLocal
+  | GetGlobal
   | SetGlobal
   | Def
   | Class
@@ -109,6 +110,11 @@ GetConstant:
   
 SetConstant:
   CONSTANT "=" Expression       { result = SetConstantNode.new(val[0], val[2]) }
+;
+
+GetGlobal:
+  "@" IDENTIFIER                    { result = GetGlobalNode.new(nil, val[1]) }
+  | Expression "." "@" IDENTIFIER   { result = GetGlobalNode.new(val[0], val[3]) }
 ;
 
 GetLocal:

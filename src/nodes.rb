@@ -45,6 +45,8 @@ class SetConstantNode < Struct.new(:name, :value); end
 # Similar to the previous nodes, the next ones are for dealing with local variables.
 class GetLocalNode < Struct.new(:receiver, :name); end
 
+class GetGlobalNode < Struct.new(:receiver, :name); end
+
 class SetLocalNode < Struct.new(:name, :value); end
 
 class SetGlobalNode < Struct.new(:name, :value); end

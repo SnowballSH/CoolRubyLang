@@ -3,9 +3,10 @@ class Group:
   @age = 13
 
   def mix:
-    name + age.str!
+    @name + @age.str!
   end
 end
 
+a = "AAA"
 John = Group.new!
-puts(John.mix!)
+puts(John.mix! + a)

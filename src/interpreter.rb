@@ -59,6 +59,12 @@ end
 
 class GetLocalNode
   def eval(context)
+    context.locals[name]
+  end
+end
+
+class GetGlobalNode
+  def eval(context)
     if receiver
       value = receiver.eval(context)
     else
