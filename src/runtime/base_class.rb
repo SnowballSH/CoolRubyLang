@@ -30,7 +30,7 @@ class BaseClass < BaseObject
       if @runtime_superclass
         return @runtime_superclass.get_global(name)
       else
-        raise "MethodError: this object has no method '#{method_name}'"
+        raise "MethodError: this object has no method '#{name}'"
       end
     end
     glb

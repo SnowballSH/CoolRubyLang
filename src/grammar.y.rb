@@ -113,13 +113,12 @@ SetConstant:
 ;
 
 GetGlobal:
-  "@" IDENTIFIER                    { result = GetGlobalNode.new(nil, val[1]) }
-  | Expression "." "@" IDENTIFIER   { result = GetGlobalNode.new(val[0], val[3]) }
+  "@" IDENTIFIER                { result = GetGlobalNode.new(nil, val[1]) }
+  | Expression "." IDENTIFIER   { result = GetGlobalNode.new(val[0], val[2]) }
 ;
 
 GetLocal:
   IDENTIFIER                    { result = GetLocalNode.new(nil, val[0]) }
-  | Expression "." IDENTIFIER   { result = GetLocalNode.new(val[0], val[2]) }
 ;
   
 SetLocal:
