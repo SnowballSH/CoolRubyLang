@@ -51,6 +51,16 @@ Constants["Object"].def :repr do |receiver, arguments|
   Constants["String"].new_with_value(receiver.value)
 end
 
+Constants["Object"].def :& do |receiver, arguments|
+  result = receiver.value && arguments.first.value
+  result == receiver.value ? receiver : arguments.first
+end
+
+Constants["Object"].def :| do |receiver, arguments|
+  result = receiver.value || arguments.first.value
+  result == receiver.value ? receiver : arguments.first
+end
+
 #####################################
 
 #####################################
@@ -93,9 +103,30 @@ Constants["Number"].def :/ do |receiver, arguments|
   Constants["Number"].new_with_value(result)
 end
 
+Constants["Number"].def :== do |receiver, arguments|
+  result = receiver.value == arguments.first.value
+  Constants["BoolClass"].new_with_value(result)
+end
+
+Constants["Number"].def :!= do |receiver, arguments|
+  result = receiver.value != arguments.first.value
+  Constants["BoolClass"].new_with_value(result)
+end
+
 Constants["Number"].def :str do |receiver, arguments|
   result = receiver.value.to_s
   Constants["String"].new_with_value(result)
+end
+
+#####################################
+
+#####################################
+# Builtin functions for Main/Bool #
+#####################################
+
+Constants["BoolClass"].def :int do |receiver, arguments|
+  result = receiver.value == true ? 1 : 0
+  Constants["Number"].new_with_value(result)
 end
 
 #####################################

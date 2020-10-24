@@ -8,6 +8,7 @@ token STRING
 token TRUE FALSE NIL
 token IDENTIFIER
 token CONSTANT
+token DBEQ NTEQ
 token END
 
 prechigh
@@ -16,9 +17,9 @@ prechigh
   left  '*' '/'
   left  '+' '-'
   left  '>' '>=' '<' '<='
-  left  '==' '!='
-  left  '&&'
-  left  '||'
+  left  DBEQ NTEQ AND OR
+  left  AND
+  left  OR
   right '='
   left  ','
 preclow
@@ -90,10 +91,10 @@ ParamList:
 ;
 
 Operator:
-    Expression '||' Expression  { result = CallNode.new(val[0], val[1], [val[2]]) }
-  | Expression '&&' Expression  { result = CallNode.new(val[0], val[1], [val[2]]) }
-  | Expression '==' Expression  { result = CallNode.new(val[0], val[1], [val[2]]) }
-  | Expression '!=' Expression  { result = CallNode.new(val[0], val[1], [val[2]]) }
+    Expression OR   Expression  { result = CallNode.new(val[0], '|'   , [val[2]]) }
+  | Expression AND  Expression  { result = CallNode.new(val[0], '&'   , [val[2]]) }
+  | Expression DBEQ Expression  { result = CallNode.new(val[0], val[1], [val[2]]) }
+  | Expression NTEQ Expression  { result = CallNode.new(val[0], val[1], [val[2]]) }
   | Expression '>'  Expression  { result = CallNode.new(val[0], val[1], [val[2]]) }
   | Expression '>=' Expression  { result = CallNode.new(val[0], val[1], [val[2]]) }
   | Expression '<'  Expression  { result = CallNode.new(val[0], val[1], [val[2]]) }

@@ -32,6 +32,22 @@ class Lexer
         tokens << [:STRING, string]
         i += string.size + 2
 
+      elsif res = chunk[/\A(==)/, 1]
+        tokens << [:DBEQ, "=="]
+        i += 2
+
+      elsif res = chunk[/\A(!=)/, 1]
+        tokens << [:NTEQ, "!="]
+        i += 2
+
+      elsif res = chunk[/\A(&&)/, 1]
+        tokens << [:AND, "&&"]
+        i += 2
+
+      elsif res = chunk[/\A(\|\|)/, 1]
+        tokens << [:OR, "||"]
+        i += 2
+
       elsif chunk.match(/\A([\r\n]+)/)
         tokens << [:NEWLINE, "\n"]
         i += 1
