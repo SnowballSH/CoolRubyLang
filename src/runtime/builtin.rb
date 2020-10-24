@@ -113,6 +113,26 @@ Constants["Number"].def :!= do |receiver, arguments|
   Constants["BoolClass"].new_with_value(result)
 end
 
+Constants["Number"].def :< do |receiver, arguments|
+  result = receiver.value < arguments.first.value
+  Constants["BoolClass"].new_with_value(result)
+end
+
+Constants["Number"].def :> do |receiver, arguments|
+  result = receiver.value > arguments.first.value
+  Constants["BoolClass"].new_with_value(result)
+end
+
+Constants["Number"].def :<= do |receiver, arguments|
+  result = receiver.value <= arguments.first.value
+  Constants["BoolClass"].new_with_value(result)
+end
+
+Constants["Number"].def :>= do |receiver, arguments|
+  result = receiver.value >= arguments.first.value
+  Constants["BoolClass"].new_with_value(result)
+end
+
 Constants["Number"].def :str do |receiver, arguments|
   result = receiver.value.to_s
   Constants["String"].new_with_value(result)

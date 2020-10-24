@@ -40,6 +40,23 @@ class Lexer
         tokens << [:NTEQ, "!="]
         i += 2
 
+
+      elsif res = chunk[/\A(<=)/, 1]
+        tokens << [:LTEQ, "<="]
+        i += 2
+
+      elsif res = chunk[/\A(>=)/, 1]
+        tokens << [:GTEQ, ">="]
+        i += 2
+
+      elsif res = chunk[/\A(<)/, 1]
+        tokens << [:LT, "<"]
+        i += 1
+
+      elsif res = chunk[/\A(>)/, 1]
+        tokens << [:GT, ">"]
+        i += 1
+
       elsif res = chunk[/\A(&&)/, 1]
         tokens << [:AND, "&&"]
         i += 2

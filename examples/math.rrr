@@ -12,4 +12,4 @@ a = "AAA"
 John = Group.new!
 puts(John.mix! + a)
 puts(John.done)
-puts((John.age || "hmm").str!)
+puts(John.age >= 13)

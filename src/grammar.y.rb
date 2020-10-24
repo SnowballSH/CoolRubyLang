@@ -8,7 +8,7 @@ token STRING
 token TRUE FALSE NIL
 token IDENTIFIER
 token CONSTANT
-token DBEQ NTEQ
+token DBEQ NTEQ LT GT LTEQ GTEQ
 token END
 
 prechigh
@@ -16,7 +16,7 @@ prechigh
   right '!'
   left  '*' '/'
   left  '+' '-'
-  left  '>' '>=' '<' '<='
+  left  GT GTEQ LT LTEQ
   left  DBEQ NTEQ AND OR
   left  AND
   left  OR
@@ -95,10 +95,10 @@ Operator:
   | Expression AND  Expression  { result = CallNode.new(val[0], '&'   , [val[2]]) }
   | Expression DBEQ Expression  { result = CallNode.new(val[0], val[1], [val[2]]) }
   | Expression NTEQ Expression  { result = CallNode.new(val[0], val[1], [val[2]]) }
-  | Expression '>'  Expression  { result = CallNode.new(val[0], val[1], [val[2]]) }
-  | Expression '>=' Expression  { result = CallNode.new(val[0], val[1], [val[2]]) }
-  | Expression '<'  Expression  { result = CallNode.new(val[0], val[1], [val[2]]) }
-  | Expression '<=' Expression  { result = CallNode.new(val[0], val[1], [val[2]]) }
+  | Expression GT   Expression  { result = CallNode.new(val[0], val[1], [val[2]]) }
+  | Expression GTEQ Expression  { result = CallNode.new(val[0], val[1], [val[2]]) }
+  | Expression LT   Expression  { result = CallNode.new(val[0], val[1], [val[2]]) }
+  | Expression LTEQ Expression  { result = CallNode.new(val[0], val[1], [val[2]]) }
   | Expression '+'  Expression  { result = CallNode.new(val[0], val[1], [val[2]]) }
   | Expression '-'  Expression  { result = CallNode.new(val[0], val[1], [val[2]]) }
   | Expression '*'  Expression  { result = CallNode.new(val[0], val[1], [val[2]]) }
