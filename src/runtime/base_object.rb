@@ -9,4 +9,8 @@ class BaseObject
   def call(method, arguments=[])
     @runtime_class.lookup(method).call(self, arguments)
   end
+
+  def get_global(name)
+    @runtime_class.get_global(name)
+  end
 end

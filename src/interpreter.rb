@@ -59,7 +59,12 @@ end
 
 class GetLocalNode
   def eval(context)
-    context.locals[name]
+    if receiver
+      value = receiver.eval(context)
+    else
+      value = context.current_self
+    end
+    value.get_global(name)
   end
 end
 
@@ -72,6 +77,13 @@ end
 class SetLocalNode
   def eval(context)
     context.locals[name] = value.eval(context)
+  end
+end
+
+class SetGlobalNode
+  def eval(context)
+    context.globals[name] = value.eval(context)
+    context.current_class.set_global(name, value)
   end
 end
 

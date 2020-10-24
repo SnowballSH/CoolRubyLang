@@ -9,8 +9,8 @@ class Lexer
     while i < code.size
       chunk = code[i..-1]
 
-      if comment = chunk[/\A#(.*?)#/, 1]
-        i += comment.size + 2
+      if comment = chunk[/\A#(.*?)/, 1]
+        i += comment.size + 1
 
       elsif identifier = chunk[/\A([a-z]\w*)/, 1]
         tokens << if KEYWORDS.include?(identifier)

@@ -1,7 +1,7 @@
-# Scarlet example #
-a = "0299298"
-b = "9370000"
-c = "ASIOH"
-puts(a.int + 99)
-puts(b.int * 7)
-puts(c.int - 999)
+class Group:
+  @name = "John"
+  @age = 13
+end
+
+John = Group.new!
+puts(John.name, John.age)

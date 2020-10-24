@@ -16,22 +16,39 @@ Constants["true"] = Constants["BoolClass"].new_with_value(true)
 Constants["false"] = Constants["BoolClass"].new_with_value(false)
 Constants["nil"] = Constants["NilClass"].new_with_value(nil)
 
+#####################################
+
+def param_check(name, size, args)raise "ArgumentError: method '#{name}' requires more #{size - args.size} arguments" if size > args.size
+end
+
+#####################################
+# Builtin functions for Main/Class #
+#####################################
+
 Constants["Class"].def :new do |receiver, arguments|
   receiver.new
 end
+
+#####################################
 
 #####################################
 # Builtin functions for Main/Object #
 #####################################
 
 Constants["Object"].def :puts do |receiver, arguments|
-  puts arguments.first.value
+  param_check("puts", 1, arguments)
+  puts *arguments.map{|x| x.value}
   Constants["nil"]
 end
 
 Constants["Object"].def :print do |receiver, arguments|
-  print arguments.first.value
+  param_check("print", 1, arguments)
+  print *arguments.map{|x| x.value}
   arguments.first.value
+end
+
+Constants["Object"].def :repr do |receiver, arguments|
+  Constants["String"].new_with_value(receiver.value)
 end
 
 #####################################

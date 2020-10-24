@@ -46,6 +46,7 @@ Expression:
   | SetConstant
   | GetLocal
   | SetLocal
+  | SetGlobal
   | Def
   | Class
   | '(' Expression ')'    { result = val[1] }
@@ -68,7 +69,6 @@ Call:
     IDENTIFIER Arguments          { result = CallNode.new(nil, val[0], val[1]) }
   | Expression "." IDENTIFIER
       Arguments                   { result = CallNode.new(val[0], val[2], val[3]) }
-  | Expression "." IDENTIFIER     { result = CallNode.new(val[0], val[2], []) }
 ;
 
 Arguments:
@@ -112,17 +112,22 @@ SetConstant:
 ;
 
 GetLocal:
-  IDENTIFIER                    { result = GetLocalNode.new(val[0]) }
+  IDENTIFIER                    { result = GetLocalNode.new(nil, val[0]) }
+  | Expression "." IDENTIFIER   { result = GetLocalNode.new(val[0], val[2]) }
 ;
   
 SetLocal:
   IDENTIFIER "=" Expression     { result = SetLocalNode.new(val[0], val[2]) }
 ;
 
+SetGlobal:
+  "@" IDENTIFIER "=" Expression     { result = SetGlobalNode.new(val[1], val[3]) }
+;
+
 Block:
     ":" Expressions END     { result = val[1] }
   | "{" Expressions "}"     { result = val[1] }
-  | "{" "}"                 { result = [] }
+  | "{" "}"                 { result = Nodes.new([]) }
 ;
 
 Def:

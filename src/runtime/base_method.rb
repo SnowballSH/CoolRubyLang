@@ -5,9 +5,9 @@ class BaseMethod
   end
   
   def call(receiver, arguments)
-    # Create a context of evaluation in which the method will execute.
     context = Context.new(receiver)
-    
+    raise "ArgumentError: method requires #{@params.size - arguments.size} more arguments" if @params.size > arguments.size
+
     # Assign passed arguments to local variables.
     @params.each_with_index do |param, index|
       context.locals[param] = arguments[index]
