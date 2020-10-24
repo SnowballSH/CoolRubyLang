@@ -53,13 +53,19 @@ end
 
 class GetConstantNode
   def eval(context)
-    Constants[name]
+    unless res = Constants[name]
+      raise "NameError: constant '#{name}' is not defined"
+    end
+    res
   end
 end
 
 class GetLocalNode
   def eval(context)
-    context.locals[name]
+    unless res = context.locals[name]
+      raise "NameError: name '#{name}' is not defined"
+    end
+    res
   end
 end
 

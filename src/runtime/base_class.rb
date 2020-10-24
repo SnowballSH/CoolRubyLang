@@ -17,7 +17,7 @@ class BaseClass < BaseObject
       if @runtime_superclass
         return @runtime_superclass.lookup(method_name)
       else
-        raise "NameError: '#{method_name}' is not defined'"
+        raise "MethodError: this object has no method '#{method_name}'"
       end
     end
 
@@ -30,7 +30,7 @@ class BaseClass < BaseObject
       if @runtime_superclass
         return @runtime_superclass.get_global(name)
       else
-        raise "NameError: name '#{name}' is not defined"
+        raise "MethodError: this object has no method '#{method_name}'"
       end
     end
     glb
